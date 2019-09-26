@@ -1,42 +1,33 @@
 package CodilityTasks.MissingElementInArray;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class Solution {
+public class Solution {
     public int solution(int[] A) {
-        List<Integer> arrayList = Arrays.stream(A)
-                .boxed()
-                .filter(c -> c > 0 & c < 1_000_001)
-                .distinct()
-                .sorted()
-                .collect(Collectors.toList());
 
-        if (arrayList.isEmpty() || arrayList.get(0) != 1 || (arrayList.size() == 1 && arrayList.get(0) > 1) || arrayList.size() > 100_000) {
+        if (A.length == 1 && A[0] > 1) {
             return 1;
-        }
+        } else if (A.length == 1 && A[0] <= 0) {
+            return 1;
+        } else if (A.length > 1) {
+            List<Integer> integerList = Arrays.stream(A)
+                    .boxed()
+                    .filter(c -> c > 0)
+                    .collect(Collectors.toList());
+            Collections.sort(integerList);
 
-        ArrayList<Integer> list = new ArrayList<>();
-
-        for (int i = 0; i < arrayList.size() - 1; i++) {
-            if ((arrayList.get(i + 1) - arrayList.get(i)) > 1) {
-                //      System.out.println((arrayList.get(i)+1));
-                return (arrayList.get(i) + 1);
+            for (int i = 0; i < integerList.size(); i++) {
+                A[i] = integerList.get(i);
+            }
+            for (int i = 0; i < A.length; i++) {
+                if (A[i] != i + 1) {
+                    return i + 1;
+                }
             }
         }
-
-
-        if (list.isEmpty()) {
-            return arrayList.stream().max(Integer::compareTo).get() + 1;
-        }
-
-        if (arrayList.size() == A.length && A.length == arrayList.get(A.length - 1)) {
-            return A.length;
-        }
-        return list.stream()
-                .min(Integer::compareTo).get();
-
+        return A.length + 1;
     }
 }

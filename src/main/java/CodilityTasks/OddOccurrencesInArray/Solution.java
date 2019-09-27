@@ -1,49 +1,23 @@
 package CodilityTasks.OddOccurrencesInArray;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
+//using XOR -> codility score = 100%
 class Solution {
     public int solution(int[] A) {
 
-        ArrayList<Integer> convertedTableToDistinctElementList = Arrays.stream(A)
-                .boxed()
-                .distinct()
-                .collect(Collectors.toCollection(ArrayList::new));
+        int result = A[0];
+        for (int i = 1; i < A.length; i++)
+            result = result ^ A[i];
 
-        HashMap<Integer, Integer> map2 = new HashMap<>();
+        return result;
 
-        List<Integer> convertedToIntegerTableElements = new ArrayList<>(A.length);
-        for (int i : A) {
-            convertedToIntegerTableElements.add(i);
-        }
-
-        for (Integer key : convertedTableToDistinctElementList) {
-            Integer temp = 0;
-            for (Integer convertedToIntegerTableElement : convertedToIntegerTableElements) {
-                if (key == convertedToIntegerTableElement) {
-                    temp++;
-                    map2.put(key, temp);
-                }
-            }
-        }
-
-        Integer score = 0;
-        for (Map.Entry<Integer, Integer> entry : map2.entrySet()) {
-            Integer key = entry.getKey();
-            Integer value = entry.getValue();
-            if (value == 1) {
-                score = key;
-            }
-        }
-        return score;
     }
+
 
     public static void main(String[] args) {
         Solution solution = new Solution();
         int[] array = {1, 2, 3, 3, 3, 4, 1, 2, 3, 6, 6};
         int[] array2 = {44, 3, 3, 5, 5, 7, 3, 4, 8, 8};
-        int[] array3 = {1, 3, 1, 5, 0, 3, 3, 5, 5, 7, 3, 4, 8, 8};
+        int[] array3 = {1, 3, 1, 5, 2, 3, 3, 5, 5, 7, 3, 4, 8, 8};
         solution.solution(array);
         solution.solution(array2);
         solution.solution(array3);

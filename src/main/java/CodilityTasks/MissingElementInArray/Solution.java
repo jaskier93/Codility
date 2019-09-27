@@ -1,33 +1,29 @@
 package CodilityTasks.MissingElementInArray;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
+// more efficient solution, codility score = 100%
 public class Solution {
     public int solution(int[] A) {
 
-        if (A.length == 1 && A[0] > 1) {
-            return 1;
-        } else if (A.length == 1 && A[0] <= 0) {
-            return 1;
-        } else if (A.length > 1) {
-            List<Integer> integerList = Arrays.stream(A)
-                    .boxed()
-                    .filter(c -> c > 0)
-                    .collect(Collectors.toList());
-            Collections.sort(integerList);
+        int result = 1;
 
-            for (int i = 0; i < integerList.size(); i++) {
-                A[i] = integerList.get(i);
-            }
-            for (int i = 0; i < A.length; i++) {
-                if (A[i] != i + 1) {
-                    return i + 1;
-                }
+        //temporary boolean will serve as condition in loop
+        boolean isMissingElementFound = false;
+
+        //set will collect only distinct values
+        Set<Integer> set = new HashSet<>();
+        for (int a : A) {
+            if (a > 0) {
+                set.add(a);
             }
         }
-        return A.length + 1;
+        for (int i = 1; i <= A.length + 1 && !isMissingElementFound; i++) {
+            if (!set.contains(i)) {
+                result = i;
+                isMissingElementFound = true;
+            }
+        }
+        return result;
     }
 }

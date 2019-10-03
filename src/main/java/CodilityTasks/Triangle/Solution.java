@@ -18,4 +18,10 @@ class Solution {
         }
         return 0;
     }
+
+    public static void main(String[] args) {
+        Integer a = 0;
+        Integer b = -5;
+        System.out.println(a.compareTo(b));
+    }
 }

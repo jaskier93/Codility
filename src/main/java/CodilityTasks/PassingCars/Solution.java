@@ -26,4 +26,20 @@ class Solution {
         }
         return -1;
     }
+
+    // codility score ->100%
+    public int moreEfficientSolution(int[] A) {
+        int zerosCounter = 0;
+        int score = 0;
+
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] == 0)
+                zerosCounter++;
+            if (A[i] == 1)
+                score = score + zerosCounter;
+            if (score > 1000000000)
+                return -1;
+        }
+        return score;
+    }
 }

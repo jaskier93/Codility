@@ -2,6 +2,7 @@ package CodilityTasks.CyclingRotation;
 
 import java.util.Arrays;
 
+//codility score -> 100%
 class Solution {
     public int[] solution(int[] A, int K) {
 

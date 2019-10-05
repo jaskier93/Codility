@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//codility score -> 100%
 public class Solution {
     public int solution(int N) {
 

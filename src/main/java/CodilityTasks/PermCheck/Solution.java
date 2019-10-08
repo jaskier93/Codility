@@ -11,12 +11,13 @@ class Solution {
         if (A.length == 1 && A[0] == 1)
             return 1;
 
-        int sumOfAllElements = (int) Arrays.stream(A).distinct().sum();
-        int max = Arrays.stream(A).max().getAsInt();
-        int min = Arrays.stream(A).min().getAsInt();
-        int arithmeticSeriesSum = (min + max) * A.length / 2;
-
-        if (sumOfAllElements == arithmeticSeriesSum && max == A.length && min == 1)
+        IntSummaryStatistics stats = Arrays.stream(A).distinct().summaryStatistics();
+        int min = stats.getMin();
+        int max = stats.getMax();
+        double sumOfAllElements = (double) (min + max) * A.length / 2;
+        double average = stats.getAverage();
+        double averageOfAllArrayElements = sumOfAllElements / A.length;
+        if (average == averageOfAllArrayElements && stats.getSum() == sumOfAllElements && min == 1)
             return 1;
         return 0;
     }

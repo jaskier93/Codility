@@ -2,7 +2,7 @@ package CodilityTasks.SomeTasks;
 
 //silnia rekurencyjnie
 public class Factorial {
-    public static long factorial(int number) {
+    public static double factorial(int number) {
         if (number <= 2) {
             return number;
         }
@@ -14,7 +14,8 @@ public class Factorial {
         System.out.println(factorial(11));
         System.out.println(factorial(15));
         System.out.println(factorial(20));
-        System.out.println("Maksymalna wartość dla typu Long = " + Long.MAX_VALUE);
-        System.out.println("Maksymalna liczba, dla której można obliczyć silnie (dla typu Long) wynosi 20");
+        System.out.println(factorial(170));
+        System.out.println("Maksymalna wartość dla typu Double = " + Double.MAX_VALUE);
+        System.out.println("Maksymalna liczba, dla której można obliczyć silnie (dla typu Double) wynosi 171");
     }
 }

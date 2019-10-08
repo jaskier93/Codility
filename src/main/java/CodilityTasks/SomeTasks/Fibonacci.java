@@ -2,7 +2,7 @@ package CodilityTasks.SomeTasks;
 
 //Fibonacci rekurencyjnie
 public class Fibonacci {
-    public static long fibonacci(int n) {
+    public static double fibonacci(int n) {
         if (n < 2) return 1;
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
@@ -11,7 +11,9 @@ public class Fibonacci {
         System.out.println(fibonacci(5));
         System.out.println(fibonacci(15));
         System.out.println(fibonacci(25));
-        System.out.println(fibonacci(35));
+        System.out.println(fibonacci(38));
+
+        System.out.println("Double max value = " + Double.MAX_VALUE);
     }
 }
 

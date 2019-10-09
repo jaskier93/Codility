@@ -1,6 +1,6 @@
 package CodilityTasks.SomeTasks;
 
-//Fibonacci rekurencyjnie
+//Fibonacci rekurencyjnie (wzór na n-ty wyraz ciągu)
 public class Fibonacci {
     public static double fibonacci(int n) {
         if (n < 2) return 1;
@@ -11,9 +11,8 @@ public class Fibonacci {
         System.out.println(fibonacci(5));
         System.out.println(fibonacci(15));
         System.out.println(fibonacci(25));
-        System.out.println(fibonacci(38));
+        System.out.println(fibonacci(40));
 
-        System.out.println("Double max value = " + Double.MAX_VALUE);
     }
 }
 

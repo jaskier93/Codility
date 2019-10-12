@@ -2,48 +2,50 @@ package CodilityTasks.Dominator;
 
 import java.util.Arrays;
 
-//codility score -> 60%
+//codility score -> 66%
 class Solution {
     public int solution(int[] A) {
 
-        int array[] = new int[A.length];
-        System.arraycopy(A, 0, array, 0, A.length);
+        int arrayLength = A.length;
+
+        int[] array = new int[arrayLength];
+        System.arraycopy(A, 0, array, 0, arrayLength);
 
         int distinctElements = (int) Arrays.stream(A)
                 .distinct()
                 .count();
 
-        Arrays.sort(array);
-
         if (distinctElements == 1) {
             return 0;
         }
 
-        if (distinctElements == A.length || A.length == 0 || A == null) {
+        if (distinctElements == arrayLength || arrayLength == 0) {
             return -1;
         }
 
-        if (distinctElements == 2 && array.length > 2) {
+        Arrays.sort(array);
+
+        if (distinctElements == 2) {
             int temp1 = 0;
             int temp2 = 0;
-            for (int i = 0; i < array.length; i++) {
-                if (array[0] == array[i]) {
+            for (int i1 : array) {
+                if (array[0] == i1) {
                     temp1++;
                 }
-                if (array[array.length - 1] == array[i]) {
+                if (array[arrayLength - 1] == i1) {
                     temp2++;
                 }
             }
             if (temp1 > temp2)
                 return 0;
-            return array.length - 1;
+            return arrayLength - 1;
         }
 
         int biggestCounter = 1;
         int dominator = array[0];
         int counter = 1;
 
-        for (int i = 1; i < array.length; i++) {
+        for (int i = 1; i < arrayLength; i++) {
             if (array[i] == array[i - 1])
                 counter++;
             else {
@@ -59,8 +61,8 @@ class Solution {
             biggestCounter++;
         }
 
-        if (biggestCounter > array.length / 2) {
-            for (int i = 0; i < A.length; i++) {
+        if (biggestCounter > arrayLength / 2) {
+            for (int i = 0; i < arrayLength; i++) {
                 if (A[i] == dominator) {
                     return i;
                 }

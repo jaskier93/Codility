@@ -12,7 +12,6 @@ public class Fibonacci {
         System.out.println(fibonacci(15));
         System.out.println(fibonacci(25));
         System.out.println(fibonacci(40));
-
     }
 }
 

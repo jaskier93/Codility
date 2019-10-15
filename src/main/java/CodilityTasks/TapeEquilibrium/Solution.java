@@ -36,5 +36,34 @@ class Solution {
                 .min(Integer::compareTo)
                 .get();
     }
-}
 
+
+    //92% score
+    public int moreEfficientSolution(int[] A) {
+
+        long rightHalfSum = 0;
+        long leftHalfSum;
+        long score;
+        int arrayLength = A.length;
+
+        if (A.length == 0)
+            return 0;
+        if (A.length == 2)
+            return Math.abs(A[0] - A[1]);
+
+
+        for (int i = 1; i < arrayLength; i++)
+            rightHalfSum += A[i];
+
+        leftHalfSum = A[0];
+        score = Math.abs(rightHalfSum + leftHalfSum);
+
+        for (int j = 1; j < arrayLength; j++) {
+            if (Math.abs(rightHalfSum - leftHalfSum) < score)
+                score = Math.abs(rightHalfSum - leftHalfSum);
+            leftHalfSum += A[j];
+            rightHalfSum -= A[j];
+        }
+        return (int) score;
+    }
+}

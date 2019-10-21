@@ -10,8 +10,8 @@ public class GenomicRangeQuerry {
         int[][] actgOccurency = new int[4][stringLength + 1]; //two-dimensional array, 4-> 4 letters (a,c,t,g)
 
         for (int i = 0; i < stringLength; i++) {
-                for (int j = 0; j < 4; j++) {
-                    actgOccurency[j][i + 1] = actgOccurency[j][i];
+            for (int j = 0; j < 4; j++) {
+                actgOccurency[j][i + 1] = actgOccurency[j][i];
             }
             switch (actgLetters[i]) {
                 case 'A':
@@ -28,14 +28,21 @@ public class GenomicRangeQuerry {
                     break;
             }
         }
-        for (int i = 0; i < P.length; i++) {
+        for (int i = 0; i < P.length-1; i++) {
             for (int j = 0; j < 4; j++) {
-                if ((actgOccurency[j][Q[i] + 1] - actgOccurency[j][P[i]]) > 0) {
+                if ((actgOccurency[j][Q[i] +1] - actgOccurency[j][P[i]]) > 0) {
                     genomicArray[i] = j + 1;
                     break;
                 }
             }
         }
         return Arrays.stream(genomicArray).filter(c -> c > 0).toArray();
+    }
+
+    public static void main(String[] args) {
+        int array[] = {0, 0, 1};
+        int array2[] = {0, 1, 1};
+
+        solution("AC", array, array2);
     }
 }
